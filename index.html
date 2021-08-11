@@ -31,6 +31,10 @@
                         <input type="text" name="color" id="txbColor" value="#222" />
                     </p>
                     <p>
+                        <label for="txbSize">Text Size</label>
+                        <input type="text" name="size" id="txbSize" value="10" />
+                    </p>
+                    <p>
                         <input type="button" id="btnSubmit" value="Generate" onclick="draw()" />
                     </p>
                 </fieldset>
@@ -50,7 +54,8 @@
                 gapX = parseInt(document.getElementById("txbGapX").value),
                 gapY = parseInt(document.getElementById("txbGapY").value),
                 rotate = parseInt(document.getElementById("txbRotate").value),
-                color = document.getElementById("txbColor").value;
+                color = document.getElementById("txbColor").value,
+                size = document.getElementById("txbSize").value;
             var canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
             canvas.width = screen.width - document.getElementById("formContainer").scrollWidth - 32;
             canvas.height = screen.height / 2;
@@ -62,6 +67,7 @@
                     ctx.rotate(Math.PI * rotate / 180);
                     ctx.textAligh = "center";
                     ctx.fillStyle = color;
+                    ctx.font = ctx.font.replace(/\d+px/, size+"px");
                     ctx.fillText(text, 0, 0);
                     ctx.restore();
                 }
